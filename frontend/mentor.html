@@ -1,0 +1,609 @@
+ <link rel="stylesheet" href="mentor.css">
+ <script type= "module" src="mentor.js" defer></script>
+    
+
+
+     <div id="result-placeholder2" class="result-placeholder2">
+                            🎯
+                            
+
+
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    🎓
+                </div>
+                <div class="logo-text">
+                    <h1>Mentor Dashboard</h1>
+                    <p>Early Intervention System</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    🌙
+                </button>
+                <button class="notification-btn">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="profile-avatar">
+                    👤
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="dashboard">
+                📊
+                Dashboard
+            </button>
+            <button class="nav-tab" data-tab="students">
+                👥
+                Students
+            </button>
+            <button class="nav-tab" data-tab="analytics">
+                📈
+                Analytics
+            </button>
+            <button class="nav-tab" data-tab="predict">
+                🎯
+                Risk Prediction
+            </button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard-tab" class="tab-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card stat-total">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <h3 id="total-students">0</h3>
+                            <p>Total Students</p>
+                        </div>
+                        <div class="stat-icon">
+                            👥
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-high">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <h3 id="high-risk-students">0</h3>
+                            <p>High Risk</p>
+                        </div>
+                        <div class="stat-icon">
+                            ⚠️
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-medium">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <h3 id="medium-risk-students">0</h3>
+                            <p>Medium Risk</p>
+                        </div>
+                        <div class="stat-icon">
+                            🎯
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-low">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <h3 id="low-risk-students">0</h3>
+                            <p>Low Risk</p>
+                        </div>
+                        <div class="stat-icon">
+                            ✅
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Panel -->
+            <div class="notification-panel">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        🔔
+                        Recent Notifications
+                    </h3>
+                </div>
+                <div class="notifications-list" id="notifications-list">
+                    <!-- Notifications will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Tab -->
+        <div id="students-tab" class="tab-content hidden">
+            <!-- Filters -->
+            <div class="card">
+                <div class="filter-section">
+                    <div class="filter-controls">
+                        <div class="filter-label">
+                            🔍
+                            Filter by Risk:
+                        </div>
+                        <select id="risk-filter">
+                            <option value="all">All Students</option>
+                            <option value="high">High Risk</option>
+                            <option value="medium">Medium Risk</option>
+                            <option value="low">Low Risk</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-export">
+                        📥
+                        Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Students Grid -->
+            <div class="students-grid" id="students-grid">
+                <!-- Student cards will be populated here -->
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content hidden">
+            <!-- Risk Distribution Analysis -->
+            <div class="card">
+                <h3 class="card-title">Risk Distribution Analysis</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Overall Risk Distribution</h4>
+                        <div style="position: relative; width: 250px; height: 250px; margin: 0 auto;">
+                            <svg id="donut-chart" viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+                                <circle cx="50" cy="50" r="30" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                                <!-- Risk segments will be added by JavaScript -->
+                            </svg>
+                            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                                <div style="text-align: center;">
+                                    <p style="font-size: 24px; font-weight: bold;" id="total-chart-students">0</p>
+                                    <p style="font-size: 12px; color: #6b7280;">Students</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center; margin-top: 24px; gap: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background: #ef4444; border-radius: 50%;"></div>
+                                <span style="font-size: 14px;">High Risk (<span id="high-count">0</span>)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
+                                <span style="font-size: 14px;">Medium Risk (<span id="medium-count">0</span>)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></div>
+                                <span style="font-size: 14px;">Low Risk (<span id="low-count">0</span>)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Risk Level Breakdown</h4>
+                        <div style="margin-top: 24px;">
+                            <div id="risk-breakdown-bars">
+                                <!-- Risk level bars will be added by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Trends -->
+            <div class="card">
+                <h3 class="card-title">Performance Trends</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Attendance Distribution</h4>
+                        <div id="attendance-bars" style="margin-top: 16px;">
+                            <!-- Attendance bars will be added by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Grade Distribution</h4>
+                        <div id="grade-bars" style="margin-top: 16px;">
+                            <!-- Grade bars will be added by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intervention Effectiveness -->
+            <div class="card">
+                <h3 class="card-title">Intervention Effectiveness</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px;">
+                    <div style="text-align: center; padding: 20px; background: #f0fdf4; border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: bold; color: #16a34a; margin-bottom: 8px;">78%</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #15803d;">Success Rate</div>
+                        <div style="font-size: 12px; color: #16a34a; margin-top: 4px;">Students improved after intervention</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #eff6ff; border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: bold; color: #2563eb; margin-bottom: 8px;">15</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #1d4ed8;">Active Interventions</div>
+                        <div style="font-size: 12px; color: #2563eb; margin-top: 4px;">Currently in progress</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #faf5ff; border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: bold; color: #7c3aed; margin-bottom: 8px;">4.2</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #6d28d9;">Avg Response Time</div>
+                        <div style="font-size: 12px; color: #7c3aed; margin-top: 4px;">Days to intervention start</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="font-weight: 500; margin-bottom: 16px;">Intervention Types Effectiveness</h4>
+                    <div id="intervention-bars">
+                        <!-- Intervention effectiveness bars will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Predictive Model Performance -->
+            <div class="card">
+                <h3 class="card-title">Model Performance Metrics</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Classification Accuracy</h4>
+                        <div id="model-performance-bars">
+                            <!-- Model performance bars will be added by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Feature Importance</h4>
+                        <div id="feature-importance-bars">
+                            <!-- Feature importance bars will be added by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time-based Analysis -->
+            <div class="card">
+                <h3 class="card-title">Temporal Analysis</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Risk Changes Over Time (Last 6 Months)</h4>
+                        <div style="position: relative; height: 200px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; background: white;">
+                            <svg id="trend-chart" viewBox="0 0 400 120" style="width: 100%; height: 100%;">
+                                <!-- Grid lines -->
+                                <defs>
+                                    <pattern id="grid" width="80" height="30" patternUnits="userSpaceOnUse">
+                                        <path d="M 80 0 L 0 0 0 30" fill="none" stroke="#f3f4f6" stroke-width="1"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="400" height="120" fill="url(#grid)" />
+                                
+                                <!-- Trend lines will be added by JavaScript -->
+                            </svg>
+                            <div style="position: absolute; bottom: 8px; left: 20px; font-size: 12px; color: #6b7280;">Apr</div>
+                            <div style="position: absolute; bottom: 8px; right: 20px; font-size: 12px; color: #6b7280;">Sep</div>
+                        </div>
+                        <div style="display: flex; justify-content: center; margin-top: 16px; gap: 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 16px; height: 2px; background: #ef4444;"></div>
+                                <span style="font-size: 12px;">High Risk</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 16px; height: 2px; background: #f59e0b;"></div>
+                                <span style="font-size: 12px;">Medium Risk</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 16px; height: 2px; background: #10b981;"></div>
+                                <span style="font-size: 12px;">Low Risk</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="font-weight: 500; margin-bottom: 16px;">Early Warning Alerts</h4>
+                        <div style="margin-top: 16px;">
+                            <div style="padding: 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+                                        <span style="font-size: 14px; font-weight: 500;">Critical Alerts</span>
+                                    </div>
+                                    <span style="font-size: 14px; font-weight: bold; color: #dc2626;">3</span>
+                                </div>
+                                <p style="font-size: 12px; color: #dc2626; margin-top: 4px;">Students requiring immediate intervention</p>
+                            </div>
+                            
+                            <div style="padding: 12px; background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-clock" style="color: #f59e0b;"></i>
+                                        <span style="font-size: 14px; font-weight: 500;">Watch List</span>
+                                    </div>
+                                    <span style="font-size: 14px; font-weight: bold; color: #d97706;">8</span>
+                                </div>
+                                <p style="font-size: 12px; color: #d97706; margin-top: 4px;">Students showing declining patterns</p>
+                            </div>
+                            
+                            <div style="padding: 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #3b82f6;"></i>
+                                        <span style="font-size: 14px; font-weight: 500;">Improved</span>
+                                    </div>
+                                    <span style="font-size: 14px; font-weight: bold; color: #2563eb;">12</span>
+                                </div>
+                                <p style="font-size: 12px; color: #2563eb; margin-top: 4px;">Students showing positive progress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Tab -->
+        <div id="predict-tab" class="tab-content hidden">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        🎯
+                        Student Dropout Risk Prediction
+                    </h3>
+                    <p style="color: #6b7280; font-size: 14px;">Enter student information to get AI-powered dropout risk assessment</p>
+                </div>
+
+                <div class="prediction-form">
+  <!-- Form Section -->
+  <div>
+    <form id="prediction-form">
+      <!-- User Data Hidden -->
+      <input type="hidden" name="userData[name]" value="Test Student">
+      <input type="hidden" name="userData[email]" value="test@example.com">
+      <input type="hidden" name="userData[studentId]" value="12345">
+
+      <!-- Basic Information -->
+      <div class="form-section">
+        <h4>Basic Information</h4>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="age" min="15" max="100" value="20" required>
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <select name="gender" required>
+              <option value="M" selected>Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nationality</label>
+            <input name="nationality" value="1" required>
+          </div>
+          <div class="form-group">
+            <label>Parent Education</label>
+            <select name="parent_education" required>
+              <option value="19" selected>Master's/PhD</option>
+              <option value="1">Primary</option>
+              <option value="2">Secondary</option>
+              <option value="3">Higher Education</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Information -->
+      <div class="form-section">
+        <h4>Academic Information</h4>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>High School Score</label>
+            <input type="number" name="highschool_score" min="0" max="100" step="0.1" value="61" required>
+          </div>
+          <div class="form-group">
+            <label>Entrance Exam Score (Normalized)</label>
+            <input type="number" name="entrance_exam_score_normalized" min="0" max="100" step="0.01" value="63.65" required>
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <input type="text" name="department" value="CSE" required>
+          </div>
+          <div class="form-group">
+            <label>Admission Type</label>
+            <input type="number" name="admission_type" value="17" required>
+          </div>
+          <div class="form-group">
+            <label>Current Semester CGPA</label>
+            <input type="number" name="current_sem_cgpa" value="0" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label>Aggregate CGPA</label>
+            <input type="number" name="aggregate_cgpa" value="0" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label>Backlogs Count</label>
+            <input type="number" name="backlogs_count" value="0" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial & Personal Info -->
+      <div class="form-section">
+        <h4>Financial & Personal Info</h4>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Family Income Bracket</label>
+            <input type="number" name="family_income_bracket">
+          </div>
+          <div class="form-group">
+            <label>Scholarship Status</label>
+            <select name="scholarship_status">
+              <option value="none" selected>No Scholarship</option>
+              <option value="scholarship">Has Scholarship</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Fee Payment Status</label>
+            <select name="fee_payment_status">
+              <option value="on_time" selected>On Time</option>
+              <option value="delayed">Delayed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Residence Type</label>
+            <select name="residence_type">
+              <option value="day_scholar" selected>Day Scholar</option>
+              <option value="hostel">Hostel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Commute Distance (km)</label>
+            <input type="number" name="commute_distance_km" step="0.1">
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden missing flags -->
+      <input type="hidden" name="department_missing" value="0">
+      <input type="hidden" name="admission_type_missing" value="0">
+      <input type="hidden" name="backlogs_count_missing" value="0">
+      <input type="hidden" name="scholarship_status_missing" value="0">
+      <input type="hidden" name="fee_payment_status_missing" value="0">
+      <input type="hidden" name="residence_type_missing" value="0">
+      <input type="hidden" name="family_income_bracket_missing" value="1">
+      <input type="hidden" name="commute_distance_km_missing" value="1">
+
+      <!-- Buttons -->
+      <div class="form-buttons">
+        <button type="submit" class="btn btn-predict" id="predict-btn">🎯 Predict Risk</button>
+        <button type="button" class="btn btn-reset" id="reset-btn">❌ Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Results Section -->
+  <div class="prediction-results">
+    <h4>Prediction Results</h4>
+
+    <!-- Default Placeholder -->
+    <div id="result-placeholder" class="result-placeholder">
+      🎯
+      <h3>No prediction yet</h3>
+      <p>Fill out the form and click "Predict Risk" to get AI-powered dropout risk assessment</p>
+    </div>
+
+    <!-- Loading -->
+    <div id="result-loading" class="result-loading hidden">
+      <div class="loading-spinner"></div>
+      <h3>Analyzing student data...</h3>
+      <p>Our AI model is processing the information</p>
+    </div>
+
+    <!-- Success -->
+    <div id="result-success" class="result-success hidden">
+      <div class="risk-header">
+        <h5>Risk Assessment</h5>
+        <span id="risk-level-badge" class="risk-badge">HIGH RISK</span>
+      </div>
+      <div class="risk-metrics">
+        <div class="risk-metric">
+          <div id="dropout-probability" class="risk-metric-value">85%</div>
+          <div class="risk-metric-label">Dropout Probability</div>
+        </div>
+        <div class="risk-metric">
+          <div id="confidence-score" class="risk-metric-value">91%</div>
+          <div class="risk-metric-label">Confidence</div>
+        </div>
+      </div>
+      <div class="risk-bar">
+        <div id="risk-progress" class="risk-progress" style="width: 85%; background: #ef4444;"></div>
+      </div>
+      <div class="risk-factors">
+        <h5>Key Risk Factors</h5>
+        <ul id="risk-factors-list"></ul>
+      </div>
+      <div class="risk-recommendations">
+        <h5>Recommended Actions</h5>
+        <ul id="recommendations-list"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+const form = document.getElementById('prediction-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Show loading
+  document.getElementById('result-placeholder').classList.add('hidden');
+  document.getElementById('result-success').classList.add('hidden');
+  document.getElementById('result-loading').classList.remove('hidden');
+
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => {
+    if (key.includes('[')) {
+      const [parent, child] = key.split(/\[|\]/).filter(Boolean);
+      data[parent] = data[parent] || {};
+      data[parent][child] = value;
+    } else {
+      data[key] = value === '' ? null : isNaN(value) ? value : parseFloat(value);
+    }
+  });
+
+  try {
+    const res = await fetch('/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+
+    // Hide loading
+    document.getElementById('result-loading').classList.add('hidden');
+    document.getElementById('result-success').classList.remove('hidden');
+
+    // Update results
+    document.getElementById('risk-level-badge').textContent = result.risk_level;
+    document.getElementById('dropout-probability').textContent = Math.round(result.probabilities.Dropout * 100) + '%';
+    document.getElementById('confidence-score').textContent = Math.round(result.confidence * 100) + '%';
+    document.getElementById('risk-progress').style.width = Math.round(result.probabilities.Dropout * 100) + '%';
+
+    // Key factors and recommendations (if any)
+    const factorsList = document.getElementById('risk-factors-list');
+    factorsList.innerHTML = ''; // clear
+    factorsList.innerHTML = `<li>🔴 Academic Performance</li><li>🔴 Attendance Rate</li><li>🔴 Financial Status</li>`;
+
+    const recList = document.getElementById('recommendations-list');
+    recList.innerHTML = '';
+    recList.innerHTML = `<li>✅ Schedule immediate academic counseling</li><li>✅ Connect with financial aid office</li>`;
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById('result-loading').classList.add('hidden');
+    document.getElementById('result-placeholder').classList.remove('hidden');
+    alert('Prediction failed. Check console for details.');
+  }
+});
+</script> -->
+
+            </div>
+        </div>
+    </div>

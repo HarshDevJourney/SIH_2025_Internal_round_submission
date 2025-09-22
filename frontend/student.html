@@ -1,0 +1,338 @@
+
+<link rel="stylesheet" href="student.css">
+ <script src="student.js" defer></script>
+    
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    🎓
+                </div>
+                <div class="logo-text">
+                    <h1>My Dashboard</h1>
+                    <p>Academic Progress Portal</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="student-info">
+                    <div class="student-name">Alex Johnson</div>
+                    <div class="student-id">Student ID: ST12345</div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    🌙
+                </button>
+                <div class="profile-avatar" onclick="showProfile()">
+                    👤
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h2 class="welcome-title">Welcome back, Alex! 👋</h2>
+            <p class="welcome-subtitle">Here's your academic progress and upcoming tasks</p>
+            <div class="status-indicator status-good">
+                ✅ You're doing great! Keep up the good work
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card attendance-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📅</div>
+                </div>
+                <div class="stat-value">87%</div>
+                <div class="stat-label">Attendance Rate</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ +3% from last month
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="78"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="courses" onclick="switchTab('courses')">
+                📚 My Courses
+            </button>
+            <button class="nav-tab" data-tab="assignments" onclick="switchTab('assignments')">
+                📝 Assignments
+            </button>
+            <button class="nav-tab" data-tab="schedule" onclick="switchTab('schedule')">
+                📅 Schedule
+            </button>
+            <button class="nav-tab" data-tab="support" onclick="switchTab('support')">
+                🤝 Support
+            </button>
+        </div>
+
+        <!-- Courses Tab -->
+        <div id="courses-tab" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">
+                    📚 Current Courses
+                </h3>
+                <div class="course-list">
+                    <div class="course-item" onclick="openCourseDetails('CS 101')">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Introduction to Computer Science</div>
+                                <div class="course-code">CS 101</div>
+                            </div>
+                            <div class="grade-badge grade-a">A-</div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">94%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.7</div>
+                                <div class="metric-label">Grade</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item" onclick="openCourseDetails('MATH 151')">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Calculus I</div>
+                                <div class="course-code">MATH 151</div>
+                            </div>
+                            <div class="grade-badge grade-b">B+</div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">89%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.3</div>
+                                <div class="metric-label">Grade</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item" onclick="openCourseDetails('ENG 101')">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">English Composition</div>
+                                <div class="course-code">ENG 101</div>
+                            </div>
+                            <div class="grade-badge grade-b">B</div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">82%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.0</div>
+                                <div class="metric-label">Grade</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item" onclick="openCourseDetails('PHY 101')">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Physics I</div>
+                                <div class="course-code">PHY 101</div>
+                            </div>
+                            <div class="grade-badge grade-c">C+</div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">76%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2.3</div>
+                                <div class="metric-label">Grade</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assignments Tab -->
+        <div id="assignments-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    📝 Upcoming Assignments
+                </h3>
+                <div class="assignment-list">
+                    <div class="assignment-item" onclick="openAssignment('Programming Project #2')">
+                        <div class="assignment-info">
+                            <h4>Programming Project #2</h4>
+                            <p>CS 101 - Create a basic calculator application</p>
+                        </div>
+                        <div class="due-date">
+                            <div class="due-soon">Due Tomorrow</div>
+                            <div class="status-badge status-pending">In Progress</div>
+                        </div>
+                    </div>
+
+                    <div class="assignment-item" onclick="openAssignment('Essay: Climate Change Impact')">
+                        <div class="assignment-info">
+                            <h4>Essay: Climate Change Impact</h4>
+                            <p>ENG 101 - 1500 word research essay</p>
+                        </div>
+                        <div class="due-date">
+                            <div class="due-later">Due in 3 days</div>
+                            <div class="status-badge status-pending">Not Started</div>
+                        </div>
+                    </div>
+
+                    <div class="assignment-item" onclick="openAssignment('Calculus Problem Set #5')">
+                        <div class="assignment-info">
+                            <h4>Calculus Problem Set #5</h4>
+                            <p>MATH 151 - Integration techniques</p>
+                        </div>
+                        <div class="due-date">
+                            <div class="due-later">Due in 5 days</div>
+                            <div class="status-badge status-submitted">Submitted</div>
+                        </div>
+                    </div>
+
+                    <div class="assignment-item" onclick="openAssignment('Physics Lab Report')">
+                        <div class="assignment-info">
+                            <h4>Physics Lab Report</h4>
+                            <p>PHY 101 - Momentum and collision analysis</p>
+                        </div>
+                        <div class="due-date">
+                            <div class="due-later">Due in 1 week</div>
+                            <div class="status-badge status-pending">Planning</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Tab -->
+        <div id="schedule-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    📅 This Week's Schedule
+                </h3>
+                <div class="calendar-view">
+                    <div class="calendar-header">
+                        <h4 class="calendar-title">Week of September 21, 2025</h4>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 2rem; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h5 style="color: var(--text-primary); margin-bottom: 1rem;">Today's Classes</h5>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: flex; justify-content: between; align-items: center; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color);">
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary);">CS 101 - Introduction to Computer Science</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">Room 204, Building A</div>
+                                </div>
+                                <div style="text-align: right; color: var(--primary-color); font-weight: 600;">9:00 AM</div>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color);">
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary);">MATH 151 - Calculus I</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">Room 301, Building B</div>
+                                </div>
+                                <div style="text-align: right; color: var(--primary-color); font-weight: 600;">11:00 AM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Tab -->
+        <div id="support-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    🤝 Academic Support
+                </h3>
+                <div class="support-section">
+                    <div class="support-card mentor-card" onclick="contactSupport('mentor')">
+                        <div class="support-icon">👨‍💼</div>
+                        <h4 class="support-title">Academic Mentor</h4>
+                        <p class="support-description">Get guidance on course selection, career planning, and academic goals</p>
+                        <button class="btn btn-primary">
+                            💬 Contact Mentor
+                        </button>
+                    </div>
+
+                    <div class="support-card counselor-card" onclick="contactSupport('counselor')">
+                        <div class="support-icon">❤️</div>
+                        <h4 class="support-title">Student Counselor</h4>
+                        <p class="support-description">Personal counseling for stress, anxiety, and mental health support</p>
+                        <button class="btn btn-primary">
+                            📅 Schedule Session
+                        </button>
+                    </div>
+
+                    <div class="support-card tutor-card" onclick="contactSupport('tutor')">
+                        <div class="support-icon">👩‍🏫</div>
+                        <h4 class="support-title">Academic Tutoring</h4>
+                        <p class="support-description">One-on-one tutoring for challenging subjects and exam preparation</p>
+                        <button class="btn btn-primary">
+                            🔍 Find Tutor
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+                    <div class="progress-fill" data-width="87"></div>
+                </div>
+            </div>
+
+            <div class="stat-card grades-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📊</div>
+                </div>
+                <div class="stat-value">3.4</div>
+                <div class="stat-label">Current GPA</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ +0.2 from last semester
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="85"></div>
+                </div>
+            </div>
+
+            <div class="stat-card assignments-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📝</div>
+                </div>
+                <div class="stat-value">92%</div>
+                <div class="stat-label">Assignment Completion</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ Excellent performance
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="92"></div>
+                </div>
+            </div>
+
+            <div class="stat-card progress-card">
+                <div class="stat-header">
+                    <div class="stat-icon">🎯</div>
+                </div>
+                <div class="stat-value">78%</div>
+                <div class="stat-label">Semester Progress</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ On track for success
+                </div>
+                <div class="progress-

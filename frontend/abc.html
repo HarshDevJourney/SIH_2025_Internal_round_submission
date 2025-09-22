@@ -1,0 +1,341 @@
+<link rel="stylesheet" href="abc.css">
+<script src="abc.js" defer></script>
+
+
+   
+
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    🎓
+                </div>
+                <span>EduVantage</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    🌙
+                </button>
+                <a href="#" class="btn-primary">
+                    🚀
+                    Get Started
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                ☰
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    🌙
+                </button>
+                <a href="#" class="btn-primary">
+                    🚀
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Initializing your learning platform...</p>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floating-element">
+        <div class="floating-icon">
+            🧠
+        </div>
+    </div>
+    <div class="floating-element">
+        <div class="floating-icon">
+            📊
+        </div>
+    </div>
+    <div class="floating-element">
+        <div class="floating-icon">
+            👥
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                ✨
+                <span>AI-Powered Learning Platform</span>
+            </div>
+            
+            <h1 class="hero-title">Student Mentorship & Guidance Platform</h1>
+            
+            <p class="hero-subtitle">
+                Comprehensive student success and early intervention system with predictive analytics, 
+                smart counseling management, and collaborative support ecosystem for academic excellence.
+            </p>
+
+            <div class="hero-cta">
+                <button class="btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;" onclick="scrollToSection('role-section')">
+                    ▶️
+                    Start Your Journey
+                </button>
+                <button class="btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;" onclick="showDemo()">
+                    📹
+                    Watch Demo
+                </button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Active Students</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Institutions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Selection Section -->
+    <section class="role-section scroll-animate" id="role-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Access Portal</h2>
+                <p class="section-subtitle">
+                    Select your role to access personalized dashboards, tools, and insights 
+                    tailored to your educational journey and responsibilities.
+                </p>
+            </div>
+
+            <div class="role-grid">
+                <div class="role-card student-card scroll-animate" onclick="selectRole('student')">
+                    <div class="role-icon">
+                        👨‍🎓
+                    </div>
+                    <h3 class="role-title">Student Portal</h3>
+                    <p class="role-description">
+                        Access your personalized learning dashboard with progress tracking, 
+                        attendance monitoring, and counseling session management.
+                    </p>
+                    <div class="role-features">
+                        <span class="feature-tag">Progress Analytics</span>
+                        <span class="feature-tag">Study Plans</span>
+                        <span class="feature-tag">Peer Collaboration</span>
+                        <span class="feature-tag">Goal Tracking</span>
+                    </div>
+                    <button class="continue-btn">
+                        Access Student Portal
+                        ➡️
+                    </button>
+                </div>
+
+                <div class="role-card mentor-card scroll-animate" onclick="selectRole('mentor')">
+                    <div class="role-icon">
+                        👥
+                    </div>
+                    <h3 class="role-title">Mentor Dashboard</h3>
+                    <p class="role-description">
+                        Monitor student progress, identify at-risk learners, schedule interventions, 
+                        and access comprehensive analytics for better guidance.
+                    </p>
+                    <div class="role-features">
+                        <span class="feature-tag">Risk Assessment</span>
+                        <span class="feature-tag">Intervention Tools</span>
+                        <span class="feature-tag">Student Analytics</span>
+                        <span class="feature-tag">Communication Hub</span>
+                    </div>
+                    <button class="continue-btn">
+                        Access Mentor Dashboard
+                        ➡️
+                    </button>
+                </div>
+
+                <div class="role-card guardian-card scroll-animate" onclick="selectRole('guardian')">
+                    <div class="role-icon">
+                        🛡️
+                    </div>
+                    <h3 class="role-title">Guardian Hub</h3>
+                    <p class="role-description">
+                        Stay informed about your ward's academic performance, attendance patterns, 
+                        and receive timely notifications about their educational progress.
+                    </p>
+                    <div class="role-features">
+                        <span class="feature-tag">Real-time Updates</span>
+                        <span class="feature-tag">Performance Reports</span>
+                        <span class="feature-tag">Communication</span>
+                        <span class="feature-tag">Alert System</span>
+                    </div>
+                    <button class="continue-btn">
+                        Access Guardian Hub
+                        ➡️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section scroll-animate" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features for Educational Excellence</h2>
+                <p class="section-subtitle">
+                    Advanced tools and analytics designed to enhance learning outcomes and student success
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card feature-ai scroll-animate">
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+                    <h3 class="feature-title">AI-Powered Analytics</h3>
+                    <p class="feature-description">
+                        Advanced machine learning algorithms provide predictive insights, 
+                        personalized recommendations, and early warning systems for academic success.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-support scroll-animate">
+                    <div class="feature-icon">
+                        👥
+                    </div>
+                    <h3 class="feature-title">Collaborative Ecosystem</h3>
+                    <p class="feature-description">
+                        Seamless communication and collaboration between students, mentors, 
+                        and guardians with real-time updates and shared insights.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-tracking scroll-animate">
+                    <div class="feature-icon">
+                        📊
+                    </div>
+                    <h3 class="feature-title">Comprehensive Tracking</h3>
+                    <p class="feature-description">
+                        Real-time monitoring of academic performance, attendance patterns, 
+                        and behavioral indicators with detailed analytics and reporting.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                        📅
+                    </div>
+                    <h3 class="feature-title">Smart Scheduling</h3>
+                    <p class="feature-description">
+                        Intelligent scheduling system for counseling sessions, interventions, 
+                        and academic activities with automated reminders and notifications.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #ec4899, #f472b6);">
+                        🛡️
+                    </div>
+                    <h3 class="feature-title">Early Intervention</h3>
+                    <p class="feature-description">
+                        Proactive identification of at-risk students with automated intervention 
+                        protocols and personalized support strategies.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                        📱
+                    </div>
+                    <h3 class="feature-title">Mobile-First Design</h3>
+                    <p class="feature-description">
+                        Responsive design optimized for all devices with native mobile apps 
+                        for seamless access anywhere, anytime.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EduVantage</h3>
+                <p>Transforming education through intelligent learning management and predictive analytics. Building the future of academic success.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">
+                        📘
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        🐦
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        💼
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        📷
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Platform</h3>
+                <a href="#role-section">Student Portal</a>
+                <a href="#role-section">Mentor Dashboard</a>
+                <a href="#role-section">Guardian Hub</a>
+                <a href="#features">Analytics Suite</a>
+                <a href="#features">Mobile Apps</a>
+            </div>
+
+            <div class="footer-section" id="about">
+                <h3>Company</h3>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press Kit</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="footer-section" id="support">
+                <h3>Support</h3>
+                <a href="#">24/7 Help Desk</a>
+                <a href="#">Live Chat</a>
+                <a href="#">Community Forum</a>
+                <a href="#">System Status</a>
+                <a href="#">Feature Requests</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 EduVantage. All rights reserved. | Empowering education through technology.</p>
+        </div>
+    </footer>

@@ -1,0 +1,376 @@
+
+<link rel="stylesheet" href="guard.css">
+ <script src="guard.js" defer></script>
+
+
+   <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    🛡️
+                </div>
+                <div class="logo-text">
+                    <h1>Guardian Dashboard</h1>
+                    <p>Student Monitoring Portal</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="guardian-info">
+                    <div class="guardian-name">Sarah Johnson</div>
+                    <div class="ward-name">Guardian of Alex Johnson</div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    🌙
+                </button>
+                <div class="profile-avatar" onclick="showProfile()">
+                    👤
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h2 class="welcome-title">Welcome, Sarah! 👋</h2>
+            <p class="welcome-subtitle">Here's an overview of Alex's academic progress and recent activities</p>
+            
+            <div class="alert-summary">
+                <div class="alert-item alert-success">
+                    <div class="alert-icon">✅</div>
+                    <div class="alert-text">Overall performance is good</div>
+                </div>
+                <div class="alert-item alert-warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-text">Physics grade needs attention</div>
+                </div>
+                <div class="alert-item alert-info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-text">2 assignments due this week</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card risk-card">
+                <div class="stat-header">
+                    <div class="stat-icon">🛡️</div>
+                    <div class="risk-indicator risk-low">Low Risk</div>
+                </div>
+                <div class="stat-value">23%</div>
+                <div class="stat-label">Dropout Risk Score</div>
+                <div class="stat-trend trend-up">
+                    ⬇️ Improved from last month
+                </div>
+            </div>
+
+            <div class="stat-card attendance-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📅</div>
+                </div>
+                <div class="stat-value">87%</div>
+                <div class="stat-label">Attendance Rate</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ +3% from last month
+                </div>
+            </div>
+
+            <div class="stat-card grades-card">
+                <div class="stat-header">
+                    <div class="stat-icon">📊</div>
+                </div>
+                <div class="stat-value">3.4</div>
+                <div class="stat-label">Current GPA</div>
+                <div class="stat-trend trend-up">
+                    ⬆️ +0.2 from last semester
+                </div>
+            </div>
+
+            <div class="stat-card engagement-card">
+                <div class="stat-header">
+                    <div class="stat-icon">👥</div>
+                </div>
+                <div class="stat-value">92%</div>
+                <div class="stat-label">Class Engagement</div>
+                <div class="stat-trend trend-neutral">
+                    ➖ Consistent performance
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="overview" onclick="switchTab('overview')">
+                📊 Overview
+            </button>
+            <button class="nav-tab" data-tab="progress" onclick="switchTab('progress')">
+                📈 Academic Progress
+            </button>
+            <button class="nav-tab" data-tab="activity" onclick="switchTab('activity')">
+                🕐 Recent Activity
+            </button>
+            <button class="nav-tab" data-tab="communication" onclick="switchTab('communication')">
+                💬 Communication
+            </button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview-tab" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">
+                    🎓 Current Courses Performance
+                </h3>
+                <div class="course-grid">
+                    <div class="course-item">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Introduction to Computer Science</div>
+                                <div class="course-code">CS 101</div>
+                            </div>
+                            <div class="grade-display">
+                                <div class="grade-value">A-</div>
+                                <div class="grade-label">3.7 GPA</div>
+                            </div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">94%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">5/5</div>
+                                <div class="metric-label">Assignments</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">A</div>
+                                <div class="metric-label">Last Exam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Calculus I</div>
+                                <div class="course-code">MATH 151</div>
+                            </div>
+                            <div class="grade-display">
+                                <div class="grade-value">B+</div>
+                                <div class="grade-label">3.3 GPA</div>
+                            </div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">89%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">4/5</div>
+                                <div class="metric-label">Assignments</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">B</div>
+                                <div class="metric-label">Last Exam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">English Composition</div>
+                                <div class="course-code">ENG 101</div>
+                            </div>
+                            <div class="grade-display">
+                                <div class="grade-value">B</div>
+                                <div class="grade-label">3.0 GPA</div>
+                            </div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">82%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3/4</div>
+                                <div class="metric-label">Assignments</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">B-</div>
+                                <div class="metric-label">Last Exam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-header">
+                            <div>
+                                <div class="course-name">Physics I</div>
+                                <div class="course-code">PHY 101</div>
+                            </div>
+                            <div class="grade-display">
+                                <div class="grade-value" style="color: #dc2626;">C+</div>
+                                <div class="grade-label">2.3 GPA</div>
+                            </div>
+                        </div>
+                        <div class="course-metrics">
+                            <div class="metric">
+                                <div class="metric-value">76%</div>
+                                <div class="metric-label">Attendance</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2/4</div>
+                                <div class="metric-label">Assignments</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">C</div>
+                                <div class="metric-label">Last Exam</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tab -->
+        <div id="progress-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    📈 Academic Progress Tracking
+                </h3>
+                
+                <!-- GPA Trend Chart Placeholder -->
+                <div style="background: var(--bg-secondary); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 1rem;">GPA Trend Over Time</h4>
+                    <div style="height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                        📊 Interactive GPA chart would be displayed here
+                    </div>
+                </div>
+
+                <!-- Attendance Pattern -->
+                <div style="background: var(--bg-secondary); border-radius: 12px; padding: 2rem; text-align: center; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Monthly Attendance Pattern</h4>
+                    <div style="height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                        📅 Attendance trend visualization would appear here
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Tab -->
+        <div id="activity-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    🕐 Recent Activity Timeline
+                </h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-success">✅</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Assignment Submitted</div>
+                            <div class="timeline-description">Programming Project #2 submitted for CS 101</div>
+                            <div class="timeline-time">2 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-info">📅</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Class Attended</div>
+                            <div class="timeline-description">Perfect attendance in Calculus I lecture</div>
+                            <div class="timeline-time">1 day ago</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-warning">⚠️</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Grade Alert</div>
+                            <div class="timeline-description">Physics exam grade below expected performance (C grade)</div>
+                            <div class="timeline-time">3 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-success">🏆</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Achievement Unlocked</div>
+                            <div class="timeline-description">Achieved Dean's List qualification with current GPA</div>
+                            <div class="timeline-time">1 week ago</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon timeline-info">📚</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Study Session Completed</div>
+                            <div class="timeline-description">Completed 2-hour study session for Physics midterm</div>
+                            <div class="timeline-time">1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication Tab -->
+        <div id="communication-tab" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">
+                    💬 Communication Hub
+                </h3>
+                <div class="communication-section">
+                    <div class="communication-card teacher-card">
+                        <div class="comm-icon">👩‍🏫</div>
+                        <h4 class="comm-title">Physics Instructor</h4>
+                        <p class="comm-description">Dr. Emily Rodriguez - Discuss Alex's performance in Physics I</p>
+                        <div class="comm-status status-available">Available</div>
+                        <button class="btn btn-primary" onclick="contactTeacher('physics')">
+                            ✉️ Send Message
+                        </button>
+                    </div>
+
+                    <div class="communication-card mentor-card">
+                        <div class="comm-icon">👨‍💼</div>
+                        <h4 class="comm-title">Academic Mentor</h4>
+                        <p class="comm-description">Prof. Michael Chen - Overall academic guidance and support</p>
+                        <div class="comm-status status-scheduled">Meeting Scheduled</div>
+                        <button class="btn btn-primary" onclick="contactMentor()">
+                            📅 View Meeting
+                        </button>
+                    </div>
+
+                    <div class="communication-card counselor-card">
+                        <div class="comm-icon">❤️</div>
+                        <h4 class="comm-title">Student Counselor</h4>
+                        <p class="comm-description">Ms. Sarah Williams - Personal and academic counseling</p>
+                        <div class="comm-status status-available">Available</div>
+                        <button class="btn btn-secondary" onclick="contactCounselor()">
+                            📞 Schedule Call
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h4>Quick Actions</h4>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="requestMeeting()">
+                            📅 Request Parent-Teacher Meeting
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewReports()">
+                            📄 View Progress Reports
+                        </button>
+                        <button class="btn btn-secondary" onclick="setAlerts()">
+                            🔔 Configure Alerts
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadReports()">
+                            💾 Download Reports
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
